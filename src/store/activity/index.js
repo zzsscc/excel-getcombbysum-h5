@@ -1,12 +1,12 @@
-import { observable, action } from 'mobx'
+import { observable, action } from "mobx";
 
 class Store {
-  @observable a = 888
+  @observable a = 888;
 
   @action
   add = () => {
-    ++this.a
-  }
-};
+    ++this.a;
+  };
+}
 
-export default new Store()
+export default new Store();

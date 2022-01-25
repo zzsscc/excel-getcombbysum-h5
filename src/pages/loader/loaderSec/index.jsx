@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
-import { inject, observer } from 'mobx-react'
+import React, { Component } from "react";
+import { inject, observer } from "mobx-react";
 
-@inject('commonConfigStore')
+@inject("commonConfigStore")
 @observer
 class Index extends Component {
-  render () {
-    const { a } = this.props.commonConfigStore
-    return (
-      <div>{a}v-b-c</div>
-    )
+  render() {
+    const { a } = this.props.commonConfigStore;
+    return <div>{a}v-b-c</div>;
   }
 }
 
-export default Index
+export default Index;

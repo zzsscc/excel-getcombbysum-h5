@@ -1,11 +1,11 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable } from "mobx";
 
 class Store {
-  constructor () {
-    makeAutoObservable(this)
+  constructor() {
+    makeAutoObservable(this);
   }
-  loading = false
-  loadingTips = '请稍候...'
+  loading = false;
+  loadingTips = "请稍候...";
 }
 
-export default new Store()
+export default new Store();
