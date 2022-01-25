@@ -16,7 +16,8 @@
     "build": "react-app-rewired build",
     "lint": "eslint --ext .js,.jsx src",
     "lint:fix": "eslint --fix --ext .js,.jsx src",
-    "prettier:fix": "prettier --write -l \"./**/*\""
+    "prettier:fix": "prettier --write -l \"./**/*\"",
+    "release": "standard-version"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -38,12 +39,6 @@
     "web-vitals": "^0.2.4",
     "xlsx": "^0.16.9"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -57,9 +52,20 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.12.1",
+    "@babel/core": "^7.16.12",
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/plugin-proposal-decorators": "^7.16.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.16.7",
+    "@babel/preset-react": "^7.16.7",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "babel-eslint": "^10.1.0",
     "customize-cra": "^1.0.0",
-    "eslint": "^8.7.0",
+    "eslint": "^7.11.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^4.3.5",
     "less": "^3.12.2",
     "less-loader": "^5.0.0",
@@ -69,17 +75,21 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "*.js": [
-      "npm run lint",
-      "git add"
-    ],
-    "*.jsx": [
-      "npm run lint",
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
       "git add"
     ]
+  },
+  "standard-version": {
+    "scripts": {
+      "posttag": "git push --follow-tags origin master"
+    },
+    "changelogHeader": "# PROJECT-NAME Changelog\n"
   }
 }
