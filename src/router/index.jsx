@@ -48,11 +48,11 @@ const Fallback = (
   <Spin />
 )
 
-@inject('globalCommonStore')
+@inject('commonGlobalStore')
 @observer
 class Index extends Component {
   render () {
-    const { loading, loadingTips } = this.props.globalCommonStore
+    const { loading, loadingTips } = this.props.commonGlobalStore
     return (
       <HashRouter>
         <Suspense fallback={Fallback}>

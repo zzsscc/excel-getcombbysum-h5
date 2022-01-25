@@ -23,7 +23,7 @@ const initialValues = {
   targetSum: 0
 }
 
-@inject('configCommonStore', 'globalCommonStore')
+@inject('commonConfigStore', 'commonGlobalStore')
 @observer
 class Index extends Component {
   
@@ -78,8 +78,8 @@ class Index extends Component {
 
   onFinish = values => {
     console.log('onFinish', values)
-    this.props.globalCommonStore.loading = true
-    this.props.globalCommonStore.loadingTips = '请稍候，完成后将下载xlsx'
+    this.props.commonGlobalStore.loading = true
+    this.props.commonGlobalStore.loadingTips = '请稍候，完成后将下载xlsx'
     this.readWorkbookFromRemoteFile(this.form.getFieldValue('excelUrl'), this.calculation)
   }
 
@@ -144,7 +144,7 @@ class Index extends Component {
       console.error('readWorkbookFromRemoteFile error', e)
       message.error(String(e))
     } finally {
-      this.props.globalCommonStore.loading = false
+      this.props.commonGlobalStore.loading = false
     }
   }
 

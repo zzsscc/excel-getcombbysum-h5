@@ -1,10 +1,13 @@
-/* common */
-const requireCommonStore = require.context('@/store/common', true, /[a-z0-9]+\.(js)$/i)
-const commonStores = {}
-requireCommonStore.keys().forEach((fileName) => {
-  const model = requireCommonStore(fileName).default
-  const name = `${fileName.replace(/\.\/|\.\w+$/ig, '')}CommonStore`
-  commonStores[name] = model
-})
+import { camelCase } from 'lodash';
 
-export default commonStores
+const requireStore = require.context('@/store', true, /[a-z0-9]+\.(js)$/i);
+const stores = {};
+requireStore.keys().forEach((fileName) => {
+  // 一级目录的index.xx文件忽略
+  if (fileName.replace(/\.\/|.\w+$/ig, '') === 'index') return;
+  const model = requireStore(fileName).default;
+  const name = `${camelCase(fileName.replace(/\.\/|\/index\.\w+$|.\w+$/ig, ''))}Store`;
+  stores[name] = model;
+});
+
+export default stores;
